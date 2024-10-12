@@ -1,3 +1,6 @@
 [submodule "Graphics"]
 	path = Graphics
 	url = https://github.com/Synestia-Studio/Graphics.git
+[submodule "GP1"]
+	path = GP1
+	url = https://github.com/40021441054102/GP1.git
