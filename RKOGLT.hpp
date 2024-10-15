@@ -18,12 +18,31 @@
      */
     # define COLOR2FLOAT(color) (color / RKOGLT_COLOR_BASE)
     /**
+     * @brief RKOGLT Color Structure
+     * @struct RKGColor
+     */
+    struct RKGColor {
+        float r;
+        float g;
+        float b;
+        float a;
+    };
+    /**
      * @brief RKOGLT Point Structure
-     * @struct RKPoint
+     * @struct RKGPoint
      */
     struct RKGPoint {
         int x;
         int y;
         int z;
+    };
+    /**
+     * @brief RKOGLT Line Structure
+     * @struct RKGLine
+     */
+    struct RKGLine {
+        RKGPoint start;
+        RKGPoint end;
+        RKGColor color;
     };
 # endif // RKOGLT

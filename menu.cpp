@@ -20,7 +20,7 @@ int main() {
         //-- Screen Saver
         case 1: {
             //-- Create Screen Saver Object
-            RKScreenSaver screen_saver(RK_SCREEN_SAVER_CIRCLE);
+            RKScreenSaver screen_saver(RK_SCREEN_SAVER_RANDOM);
             break;
         }
         //-- Exit
