@@ -37,6 +37,16 @@
         int z;
     };
     /**
+     * @brief RKOGLT Point Color Structure
+     * @struct RKGPointColor
+     */
+    struct RKGPointColor {
+        int x;
+        int y;
+        int z;
+        RKGColor color;
+    };
+    /**
      * @brief RKOGLT Line Structure
      * @struct RKGLine
      */

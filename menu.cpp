@@ -3,8 +3,16 @@
     # include "ScreenSaver.hpp"
 # endif // RK_GRAPHICS_PROJECT_1
 
+/**
+ * @brief Method to Clear Terminal
+ */
+void clearTerminal() {
+    std::cout << "\033[2J\x1b[H";
+}
+
 //-- Main Method
 int main() {
+    clearTerminal();
     logger(RKG_LABEL LIGHT_CYAN "Welcome to Ramtin Kosari's Term 7 Graphics Projects" RESET);
     logRKGraphicsLogo();
     logger(CYAN "Choose a Project to Run :");
@@ -14,13 +22,73 @@ int main() {
     //-- Define Choice
     int choice;
     //-- Get User Choice
-    std::cout << TAB "Enter Your Choice : " GREEN; std::cin >> choice; std::cout << RESET;
+    std::cout << TAB "Enter Your Choice : " CYAN; std::cin >> choice; std::cout << RESET;
     //-- Handle Switch
     switch (choice) {
         //-- Screen Saver
         case 1: {
-            //-- Create Screen Saver Object
-            RKScreenSaver screen_saver(RK_SCREEN_SAVER_RANDOM);
+            //-- Clear Terminal
+            clearTerminal();
+            logger(RKG_LABEL LIGHT_CYAN "Enjoy My Screen Savers" RESET);
+            logRKGraphicsLogo();
+            logger(YELLOW "Choose a Screen Saver :");
+            logger(TAB YELLOW_GRAY "0." RESET " Test");
+            logger(TAB YELLOW_GRAY "1." RESET " Circle");
+            logger(TAB YELLOW_GRAY "2." RESET " Random");
+            logger(TAB YELLOW_GRAY "3." RESET " Infinity");
+            logger(TAB YELLOW_GRAY "4." RESET " Wish Flower");
+            logger(TAB YELLOW_GRAY "5." RESET " Custom Line");
+            logger(TAB YELLOW_GRAY "6." RESET " Custom Polygon");
+            logger(TAB YELLOW_GRAY "7." RESET " Custom Line Polygon");
+            logger(TAB YELLOW_GRAY "8." RESET " Exit (Not Yet Implemented)");
+            //-- Get User Choice
+            std::cout << TAB "Enter Your Choice : " YELLOW; std::cin >> choice; std::cout << RESET;
+            //-- Handle Switch
+            switch (choice) {
+                //-- Test Screen Saver
+                case RK_SCREEN_SAVER_TEST: {
+                    RKScreenSaver screen_saver(RK_SCREEN_SAVER_TEST);
+                    break;
+                }
+                //-- Circle Screen Saver
+                case RK_SCREEN_SAVER_CIRCLE: {
+                    RKScreenSaver screen_saver(RK_SCREEN_SAVER_CIRCLE);
+                    break;
+                }
+                //-- Random Screen Saver
+                case RK_SCREEN_SAVER_RANDOM: {
+                    RKScreenSaver screen_saver(RK_SCREEN_SAVER_RANDOM);
+                    break;
+                }
+                //-- Infinite Screen Saver
+                case RK_SCREEN_SAVER_INFINITE: {
+                    RKScreenSaver screen_saver(RK_SCREEN_SAVER_INFINITE);
+                    break;
+                }
+                //-- Wish Flower Screen Saver
+                case RK_SCREEN_SAVER_WISH_FLOWER: {
+                    RKScreenSaver screen_saver(RK_SCREEN_SAVER_WISH_FLOWER);
+                    break;
+                }
+                //-- Custom Line Screen Saver
+                case RK_SCREEN_SAVER_CUSTOM: {
+                    RKScreenSaver screen_saver(RK_SCREEN_SAVER_CUSTOM);
+                    break;
+                }
+                //-- Custon Polygon Screen Saver
+                case RK_SCREEN_SAVER_CUSTOM_POLYGON: {
+                    RKScreenSaver screen_saver(RK_SCREEN_SAVER_CUSTOM_POLYGON);
+                    break;
+                }
+                //-- Custom Line Polygon Screen Saver
+                case RK_SCREEN_SAVER_CUSTOM_POLYGON_LINE: {
+                    RKScreenSaver screen_saver(RK_SCREEN_SAVER_CUSTOM_POLYGON_LINE);
+                    break;
+                }
+            }
+        }
+        //-- Polygan
+        case 2: {
             break;
         }
         //-- Exit

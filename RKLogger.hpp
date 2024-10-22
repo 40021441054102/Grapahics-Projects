@@ -104,6 +104,12 @@
      */
     # define BLUE_GRAY "\033[38;2;0;128;178m"
     /**
+     * @def YELLOW_GRAY
+     * @brief Yellow Gray Message
+     * @details This Macro Defines Yellow Gray Color for Log Messages
+     */
+    # define YELLOW_GRAY "\033[38;2;178;128;0m"
+    /**
      * @def YELLOW
      * @brief Yellow Message
      * @details This Macro Defines Yellow Color for Log Messages
