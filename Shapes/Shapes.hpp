@@ -17,6 +17,10 @@
     # ifndef RK_GRAPHICS_LINE
         # include "Line.hpp"
     # endif // RK_GRAPHICS_LINE
+    //-- Include Polygon File
+    # ifndef RK_GRAPHICS_POLYGON
+        # include "Polygon.hpp"
+    # endif // RK_GRAPHICS_POLYGON
     /**
      * @brief Ramtin Kosari's Shapes Class
      * @class RKShapes
@@ -31,9 +35,5 @@
              * @brief Destroy the RKShapes Object
              */
             ~RKShapes();
-            /**
-             * @brief Line Object
-             */
-            ;
     };
 # endif // RK_GRAPHICS_SHAPE
