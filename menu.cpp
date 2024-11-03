@@ -2,6 +2,7 @@
 # ifndef RK_GRAPHICS_PROJECT_1
     # include "ScreenSaver.hpp"
 # endif // RK_GRAPHICS_PROJECT_1
+# include "RKLogger.hpp"
 
 /**
  * @brief Method to Clear Terminal
@@ -17,8 +18,9 @@ int main() {
     logRKGraphicsLogo();
     logger(CYAN "Choose a Project to Run :");
     logger(TAB BLUE_GRAY "1." RESET " Screen Saver");
-    logger(TAB BLUE_GRAY "2." RESET " ...");
-    logger(TAB BLUE_GRAY "3." RESET " Exit");
+    logger(TAB BLUE_GRAY "2." RESET " 3D Model");
+    logger(TAB BLUE_GRAY "3." RESET " ...");
+    logger(TAB BLUE_GRAY "0." RESET " Exit");
     //-- Define Choice
     int choice;
     //-- Get User Choice
@@ -40,7 +42,9 @@ int main() {
             logger(TAB YELLOW_GRAY "5." RESET " Custom Line");
             logger(TAB YELLOW_GRAY "6." RESET " Custom Polygon");
             logger(TAB YELLOW_GRAY "7." RESET " Custom Line Polygon");
-            logger(TAB YELLOW_GRAY "8." RESET " Exit (Not Yet Implemented)");
+            logger(TAB YELLOW_GRAY "8." RESET " Custom Circle Polygon");
+            logger(TAB YELLOW_GRAY "9." RESET " Triangle Screen Saver");
+            logger(TAB YELLOW_GRAY "10." RESET " Exit (Not Yet Implemented)");
             //-- Get User Choice
             std::cout << TAB "Enter Your Choice : " YELLOW; std::cin >> choice; std::cout << RESET;
             //-- Handle Switch
@@ -85,6 +89,16 @@ int main() {
                     RKScreenSaver screen_saver(RK_SCREEN_SAVER_CUSTOM_POLYGON_LINE);
                     break;
                 }
+                //-- Custom Circle Screen Saver
+                case RK_SCREEN_SAVER_CUSTOM_CIRCLE: {
+                    RKScreenSaver screen_saver(RK_SCREEN_SAVER_CUSTOM_CIRCLE);
+                    break;
+                }
+                //-- Triangle Screen Saver
+                case RK_SCREEN_SAVER_TRIANGLE: {
+                    RKScreenSaver screen_saver(RK_SCREEN_SAVER_TRIANGLE);
+                    break;
+                }
             }
         }
         //-- Polygan
@@ -93,19 +107,23 @@ int main() {
         }
         //-- Exit
         case 3: {
-            logger(RKG_LABEL SUCCESS "Terminated" RESET);
+            // logger(RKG_LABEL SUCCESS "Terminated" RESET);
             break;
         }
         //-- Default
         default:
-            logger(RKG_LABEL FAILURE YELLOW "Invalid Choice" RESET);
+            // logger(RKG_LABEL FAILURE YELLOW "Invalid Choice" RESET);
             break;
     }
     return 0;
 }
 
 
+// //-- Include Window Module
+// # include "Window.hpp"
+// # include "Shapes.hpp"
 
+// # define PADDING 40
 
 // //-- Main Method
 // int main() {
@@ -113,13 +131,111 @@ int main() {
 //     //-- Create a Window Object
 //     synwin::SynWindow window(
 //         "Synestia Graphics",
-//         737,
-//         737
+//         RK_SCREEN_SAVER_WINDOW_HEIGHT,
+//         RK_SCREEN_SAVER_WINDOW_WIDTH
 //     );
+//     RKLine l1, l2;
+//     RKPolygon car;
+//     Sint32 mouse_x;
+//     Sint32 mouse_y;
+//     Sint32 angle = 0;
+//     // create shape object
+//     RKShapes shape;
+//     RKGPointColor p1, p2, p3, p4;
+//     p1.color.a = 255;
+//     p1.color.r = 255;
+//     p1.color.g = 100;
+//     p1.color.b - 100;
+//     p1.x = 200;
+//     p1.y = 200;
+//     p1.z = 0;
+//     // -- 
+//     p2.color.a = 255;
+//     p2.color.r = 100;
+//     p2.color.g = 255;
+//     p2.color.b - 255;
+//     p2.x = 200;
+//     p2.y = 400;
+//     p2.z = 0;
+//     // -- 
+//     // --
+//     p3.color.a = 255;
+//     p3.color.r = 100;
+//     p3.color.g = 255;
+//     p3.color.b - 255;
+//     p3.x = 400;
+//     p3.y = 400;
+//     p3.z = 0;
+//     // -- 
+//     //-- 
+//     p4.color.a = 255;
+//     p4.color.r = 255;
+//     p4.color.g = 100;
+//     p4.color.b - 100;
+//     p4.x = 400;
+//     p4.y = 200;
+//     p4.z = 0;
+//     // -- 
+//     std::deque<RKGPointColor> polyBuffer;
+//     polyBuffer.push_back(p1);
+//     polyBuffer.push_back(p2);
+//     polyBuffer.push_back(p3);
+//     polyBuffer.push_back(p4);
+//     //-- Set OpenGL Ortho
+//     glOrtho(
+//         0.0,RK_SCREEN_SAVER_WINDOW_WIDTH,
+//         0.0, RK_SCREEN_SAVER_WINDOW_HEIGHT,
+//         -1.0, 1.0
+//     );
+//     int agentSize = 50;
 //     //-- Window Loop
 //     while (true) {
 //         //-- Clear the Window
-//         window.clear();
+//         window.clear(30, 30, 30, 255);
+
+//         l1.drawLine(
+//             static_cast<int>(0 + PADDING), static_cast<int>(RK_SCREEN_SAVER_WINDOW_HEIGHT * 1 / 3),
+//             static_cast<int>(RK_SCREEN_SAVER_WINDOW_WIDTH - PADDING), static_cast<int>(RK_SCREEN_SAVER_WINDOW_HEIGHT * 1 / 3),
+//             0.0f, 0.0f, 
+//             {
+//                 static_cast<int>(255),
+//                 static_cast<int>(255),
+//                 static_cast<int>(255),
+//                 255
+//             }
+//         );
+//         l2.drawLine(
+//             static_cast<int>(0 + PADDING), static_cast<int>(RK_SCREEN_SAVER_WINDOW_HEIGHT * 2 / 3),
+//             static_cast<int>(RK_SCREEN_SAVER_WINDOW_WIDTH - PADDING), static_cast<int>(RK_SCREEN_SAVER_WINDOW_HEIGHT * 2 / 3),
+//             0.0f, 0.0f, 
+//             {
+//                 static_cast<int>(255),
+//                 static_cast<int>(255),
+//                 static_cast<int>(255),
+//                 255
+//             }
+//         );
+//         mouse_x = window.mouse.x;
+//         mouse_y = window.mouse.y;
+//         angle = window.mouse.angle; //* M_PI / 180;
+//         std::cout << angle << std::endl;
+//         polyBuffer[0].x = mouse_x + agentSize * cos(90 + angle);
+//         polyBuffer[0].y = (RK_SCREEN_SAVER_WINDOW_HEIGHT - mouse_y) + agentSize * sin(90 + angle);
+//         polyBuffer[1].x = mouse_x + agentSize * cos(angle);
+//         polyBuffer[1].y = (RK_SCREEN_SAVER_WINDOW_HEIGHT - mouse_y) + agentSize * sin(angle);
+//         polyBuffer[2].x = mouse_x + agentSize * cos(360 - angle);
+//         polyBuffer[2].y = (RK_SCREEN_SAVER_WINDOW_HEIGHT - mouse_y) + agentSize * sin(360 - angle);
+//         polyBuffer[3].x = mouse_x + agentSize * cos(180 + angle);
+//         polyBuffer[3].y = (RK_SCREEN_SAVER_WINDOW_HEIGHT - mouse_y) + agentSize * sin(180 + angle);
+//         // p1.x = window.mo
+
+
+
+
+
+//         car.drawPolygon(polyBuffer);
+
+
 //         //-- Update the Window
 //         window.update();
 //     }
@@ -310,7 +426,7 @@ int main() {
 //     synwin::SynWindow window("Synestia Graphics", 737, 737);
 //     while (true) {
 //         Uint32 currentTime = SDL_GetTicks();
-//         if (currentTime - lastTime >= 100) { // 1000 milliseconds = 1 second
+//         if (currentTime - lastTime >= 100) { // RK_SCREEN_SAVER_WINDOW_WIDTH milliseconds = 1 second
 //             width += 5; // Increase the width by 1 pixel
 //             height += 5; // Increase the height by 1 pixel
 //             // std::cout << "Width: " << width << " Height: " << height << std::endl;
