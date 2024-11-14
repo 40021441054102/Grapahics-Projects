@@ -2,6 +2,14 @@
 # ifndef RK_GRAPHICS_PROJECT_1
     # include "ScreenSaver.hpp"
 # endif // RK_GRAPHICS_PROJECT_1
+//-- Include Project 3
+# ifndef RK_GRAPHICS_PROJECT_3
+    # include "BouncingBall.hpp"
+# endif // RK_GRAPHICS_PROJECT_3
+//-- Include Project 5
+# ifndef RK_GRAPHICS_PROJECT_5
+    # include "MouseFunctions.hpp"
+# endif // RK_GRAPHICS_PROJECT_5
 # include "RKLogger.hpp"
 
 /**
@@ -11,15 +19,117 @@ void clearTerminal() {
     std::cout << "\033[2J\x1b[H";
 }
 
+// int main() {
+//     synwin::SynWindow window(
+//         "Synestia Graphics",
+//         RK_SCREEN_SAVER_WINDOW_HEIGHT,
+//         RK_SCREEN_SAVER_WINDOW_WIDTH
+//     );
+
+//     //-- Set OpenGL Ortho
+//     glOrtho(
+//         0.0,RK_SCREEN_SAVER_WINDOW_WIDTH,
+//         0.0, RK_SCREEN_SAVER_WINDOW_HEIGHT,
+//         -1.0, 1.0
+//     );
+//     synshape::Line line;
+//     RKGPoint first, second;
+//     first.x = RK_SCREEN_SAVER_WINDOW_WIDTH / 2;
+//     first.y = RK_SCREEN_SAVER_WINDOW_HEIGHT / 2;
+//     second.x = RK_SCREEN_SAVER_WINDOW_WIDTH / 2;
+//     second.y = RK_SCREEN_SAVER_WINDOW_HEIGHT / 2;
+//     RKGColor c1, c2;
+//     c1.r = 0;
+//     c1.g = 255;
+//     c1.b = 255;
+//     c1.a = 255;
+//     c2.r = 0;
+//     c2.g = 255;
+//     c2.b = 255;
+//     c2.a = 255;
+//     first.color = c1;
+//     second.color = c2;
+//     //-- create polygon object
+//     synshape::Polygon poly;
+//     //-- vector to store circle points
+//     std::deque<RKGPoint> points;
+//     points.resize(0);
+//     //-- define points amount
+//     int radius = 0;
+//     int amount = 4;
+//     double theta = 0;
+//     int theta_padd = 360 / amount;
+//     //-- calculate r related x and y and r
+//     int x_rel, y_rel;
+//     int c = 0;
+//     while (true) 
+//     {
+//         //-- Clear the Window
+//         window.clear(30, 30, 30, 255);
+//         second.x = window.mouse.x;
+//         second.y = RK_SCREEN_SAVER_WINDOW_HEIGHT - window.mouse.y;
+//         line.drawLine(
+//             first,
+//             second
+//         );
+//         //-- calculate polygon points
+//         for (int i = 0; i < amount; i++) {
+//             //-- calculate x and y
+//             x_rel = second.x - first.x;
+//             y_rel = first.y - second.y;
+//             //-- calaculate r
+//             radius = sqrt(pow(x_rel, 2) + pow(y_rel, 2));
+//             //-- point
+//             RKGPoint tmp;
+//             tmp.x = first.x + radius * cos(theta * M_PI / 180);
+//             tmp.y = first.y + radius * sin(theta * M_PI / 180);
+//             RKGColor tmpc;
+//             tmpc.a = 255;
+//             tmpc.r = 0;
+//             tmpc.g = 255;
+//             tmpc.b = 255;
+//             tmp.color = tmpc;
+//             points.push_back(tmp);
+//             theta = theta_padd * (i + 1);
+//         }
+//         //-- Increase Amount
+//         c++;
+//         if (amount < 40) {
+//             if (c % 2 == 0) {
+//                 amount++;
+//                 theta_padd = 360 / amount;
+//             }
+//         }
+//         //-- add to queue
+//         for (int i = 0; i < amount; i++) {
+//             line.drawLine(
+//                 points[i],
+//                 points[(i + 1) % amount]
+//             );
+//         }
+//         for (const auto& point : points) {
+//             // poly.drawPolygon(points, true);
+//         }
+//         //-- sleep
+//         points.clear();
+//         //-- update window
+//         window.update();
+//         std::this_thread::sleep_for(std::chrono::milliseconds(20));
+//     }
+// }
+
 //-- Main Method
-int main() {
+int main(int argc, char** argv) {
+    glutInit(&argc, argv);
     clearTerminal();
     logger(RKG_LABEL LIGHT_CYAN "Welcome to Ramtin Kosari's Term 7 Graphics Projects" RESET);
     logRKGraphicsLogo();
     logger(CYAN "Choose a Project to Run :");
     logger(TAB BLUE_GRAY "1." RESET " Screen Saver");
     logger(TAB BLUE_GRAY "2." RESET " 3D Model");
-    logger(TAB BLUE_GRAY "3." RESET " ...");
+    logger(TAB BLUE_GRAY "3." RESET " Bouncing Ball");
+    logger(TAB BLUE_GRAY "4." RESET " Clock");
+    logger(TAB BLUE_GRAY "5." RESET " Mouse Functions");
     logger(TAB BLUE_GRAY "0." RESET " Exit");
     //-- Define Choice
     int choice;
@@ -32,7 +142,9 @@ int main() {
             //-- Clear Terminal
             clearTerminal();
             logger(RKG_LABEL LIGHT_CYAN "Enjoy My Screen Savers" RESET);
+            //-- Log RK Graphics Logo
             logRKGraphicsLogo();
+            //-- Log Screen Saver Choices
             logger(YELLOW "Choose a Screen Saver :");
             logger(TAB YELLOW_GRAY "0." RESET " Test");
             logger(TAB YELLOW_GRAY "1." RESET " Circle");
@@ -44,7 +156,9 @@ int main() {
             logger(TAB YELLOW_GRAY "7." RESET " Custom Line Polygon");
             logger(TAB YELLOW_GRAY "8." RESET " Custom Circle Polygon");
             logger(TAB YELLOW_GRAY "9." RESET " Triangle Screen Saver");
-            logger(TAB YELLOW_GRAY "10." RESET " Exit (Not Yet Implemented)");
+            logger(TAB YELLOW_GRAY "10." RESET " Scaling Circle with Footprints");
+            logger(TAB YELLOW_GRAY "11." RESET " Scaling Circle without Footprints");
+            logger(TAB YELLOW_GRAY "12." RESET " Exit (Not Yet Implemented)");
             //-- Get User Choice
             std::cout << TAB "Enter Your Choice : " YELLOW; std::cin >> choice; std::cout << RESET;
             //-- Handle Switch
@@ -99,15 +213,131 @@ int main() {
                     RKScreenSaver screen_saver(RK_SCREEN_SAVER_TRIANGLE);
                     break;
                 }
+                //-- Scaling Circle with Footprints
+                case RK_SCREEN_SAVER_SCALING_CIRCLE_WITH_FOOTPRINTS: {
+                    RKScreenSaver screen_saver(RK_SCREEN_SAVER_SCALING_CIRCLE_WITH_FOOTPRINTS);
+                    break;
+                }
+                //-- Scaling Circle without Footprints
+                case RK_SCREEN_SAVER_SCALING_CIRCLE_WITHOUT_FOOTPRINTS: {
+                    RKScreenSaver screen_saver(RK_SCREEN_SAVER_SCALING_CIRCLE_WITHOUT_FOOTPRINTS);
+                    break;
+                }
             }
         }
-        //-- Polygan
+        //-- 3D Model
         case 2: {
+            //-- Clear Terminal
+            clearTerminal();
+            logger(RKG_LABEL LIGHT_CYAN "Enjoy My 3D Models" RESET);
+            //-- Log RK Graphics Logo
+            logRKGraphicsLogo();
+            //-- Log Screen Saver Choices
+            logger(YELLOW "Choose a 3D Model :");
+            logger(TAB YELLOW_GRAY "0." RESET " Test");
+            logger(TAB YELLOW_GRAY "1." RESET " Cube");
+            logger(TAB YELLOW_GRAY "2." RESET " Pyramid");
+            logger(TAB YELLOW_GRAY "3." RESET " Random");
+            logger(TAB YELLOW_GRAY "4." RESET " Sphere");
+            logger(TAB YELLOW_GRAY "5." RESET " Parabolla");
+            logger(TAB YELLOW_GRAY "6." RESET " Exit (Not Yet Implemented)");
+            //-- Get User Choice
+            std::cout << TAB "Enter Your Choice : " YELLOW; std::cin >> choice; std::cout << RESET;
+            //-- Handle Switch
+            switch (choice) {
+            }
             break;
         }
-        //-- Exit
+        //-- Bouncing Ball
         case 3: {
-            // logger(RKG_LABEL SUCCESS "Terminated" RESET);
+            //-- Clear Terminal
+            clearTerminal();
+            logger(RKG_LABEL LIGHT_CYAN "Enjoy My Bouncing Ball" RESET);
+            //-- Log RK Graphics Logo
+            logRKGraphicsLogo();
+            //-- Log Screen Saver Choices
+            logger(YELLOW "Choose a Bouncing Ball Model :");
+            logger(TAB YELLOW_GRAY "0." RESET " Test");
+            logger(TAB YELLOW_GRAY "1." RESET " with Gravity");
+            logger(TAB YELLOW_GRAY "2." RESET " with Impact");
+            logger(TAB YELLOW_GRAY "3." RESET " Faster Smaller Impact");
+            //-- Get User Choice
+            std::cout << TAB "Enter Your Choice : " YELLOW; std::cin >> choice; std::cout << RESET;
+            //-- Handle Switch
+            switch (choice) {
+                //-- Test Bouncing Ball
+                case RK_BOUNCING_BALL_TEST: {
+                    RKBouncingBall bouncing_ball(RK_BOUNCING_BALL_TEST);
+                    break;
+                }
+                //-- Bouncing Ball with Gravity
+                case RK_BOUNCING_BALL_GRAVITY: {
+                    RKBouncingBall bouncing_ball(RK_BOUNCING_BALL_GRAVITY);
+                    break;
+                }
+                //-- Bouncing Ball with Impact
+                case RK_BOUNCING_BALL_IMPACT: {
+                    RKBouncingBall bouncing_ball(RK_BOUNCING_BALL_IMPACT);
+                    break;
+                }
+                //-- Faster Smaller Impact
+                case RK_BOUNCING_BALL_FASTER_SMALLER_IMPACT: {
+                    RKBouncingBall bouncing_ball(RK_BOUNCING_BALL_FASTER_SMALLER_IMPACT);
+                    break;
+                }
+            }
+            break;
+        }
+        //-- Clock
+        case 4: {
+            //-- Clear Terminal
+            clearTerminal();
+            logger(RKG_LABEL LIGHT_CYAN "Enjoy My Clock" RESET);
+            //-- Log RK Graphics Logo
+            logRKGraphicsLogo();
+            //-- Log Screen Saver Choices
+            logger(YELLOW "Choose a Clock Model :");
+            logger(TAB YELLOW_GRAY "0." RESET " Test");
+            logger(TAB YELLOW_GRAY "1." RESET " Analog Clock");
+            logger(TAB YELLOW_GRAY "2." RESET " Digital Clock");
+            logger(TAB YELLOW_GRAY "3." RESET " Analog and Digital Clock");
+            logger(TAB YELLOW_GRAY "4." RESET " Exit (Not Yet Implemented)");
+            break;
+        }
+        //-- Mouse Functions
+        case 5: {
+            //-- Clear Terminal
+            clearTerminal();
+            logger(RKG_LABEL LIGHT_CYAN "Enjoy My Mouse Functions" RESET);
+            //-- Log RK Graphics Logo
+            logRKGraphicsLogo();
+            //-- Log Screen Saver Choices
+            logger(YELLOW "Choose a Mouse Function :");
+            logger(TAB YELLOW_GRAY "0." RESET " Test");
+            logger(TAB YELLOW_GRAY "1." RESET " Mouse Change Circle Radius");
+            logger(TAB YELLOW_GRAY "2." RESET " Mouse Change Line Thickness");
+            logger(TAB YELLOW_GRAY "3." RESET " Mouse Change Rectangle Thickness");
+            logger(TAB YELLOW_GRAY "4." RESET " Exit (Not Yet Implemented)");
+            //-- Get User Choice
+            std::cout << TAB "Enter Your Choice : " YELLOW; std::cin >> choice; std::cout << RESET;
+            //-- Handle Switch
+            switch (choice) {
+                //-- Test Mouse Function
+                case RK_MOUSE_FUNCTION_CIRCLE_RADIUS: {
+                    RKMouseFunctions mouse_functions(RK_MOUSE_FUNCTION_CIRCLE_RADIUS);
+                    break;
+                }
+                //-- Mouse Change Line Thickness
+                case RK_MOUSE_FUNCTION_LINE_THICKNESS: {
+                    RKMouseFunctions mouse_functions(RK_MOUSE_FUNCTION_LINE_THICKNESS);
+                    break;
+                }
+                //-- Mouse Change Rectangle Thickness
+                case RK_MOUSE_FUNCTION_RECTANGLE_THICKNESS: {
+                    RKMouseFunctions mouse_functions(RK_MOUSE_FUNCTION_RECTANGLE_THICKNESS);
+                    break;
+                }
+            }
             break;
         }
         //-- Default
@@ -189,9 +419,9 @@ int main() {
 //     );
 //     int agentSize = 50;
 //     //-- Window Loop
-//     while (true) {
-//         //-- Clear the Window
-//         window.clear(30, 30, 30, 255);
+    // while (true) {
+    //     //-- Clear the Window
+    //     window.clear(30, 30, 30, 255);
 
 //         l1.drawLine(
 //             static_cast<int>(0 + PADDING), static_cast<int>(RK_SCREEN_SAVER_WINDOW_HEIGHT * 1 / 3),
