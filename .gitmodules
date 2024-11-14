@@ -7,3 +7,9 @@
 [submodule "GP2"]
 	path = GP2
 	url = https://github.com/40021441054102/GP2.git
+[submodule "GP3"]
+	path = GP3
+	url = https://github.com/40021441054102/GP3.git
+[submodule "GP5"]
+	path = GP5
+	url = https://github.com/40021441054102/GP5.git
