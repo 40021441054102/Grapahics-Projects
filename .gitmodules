@@ -13,3 +13,6 @@
 [submodule "GP5"]
 	path = GP5
 	url = https://github.com/40021441054102/GP5.git
+[submodule "GP4"]
+	path = GP4
+	url = https://github.com/40021441054102/GP4.git
