@@ -6,6 +6,10 @@
 # ifndef RK_GRAPHICS_PROJECT_3
     # include "BouncingBall.hpp"
 # endif // RK_GRAPHICS_PROJECT_3
+//-- Include Project 4
+# ifndef RK_GRAPHICS_PROJECT_4
+    # include "Clock.hpp"
+# endif // RK_GRAPHICS_PROJECT_4
 //-- Include Project 5
 # ifndef RK_GRAPHICS_PROJECT_5
     # include "MouseFunctions.hpp"
@@ -19,104 +23,23 @@ void clearTerminal() {
     std::cout << "\033[2J\x1b[H";
 }
 
-// int main() {
-//     synwin::SynWindow window(
-//         "Synestia Graphics",
-//         RK_SCREEN_SAVER_WINDOW_HEIGHT,
-//         RK_SCREEN_SAVER_WINDOW_WIDTH
-//     );
-
-//     //-- Set OpenGL Ortho
-//     glOrtho(
-//         0.0,RK_SCREEN_SAVER_WINDOW_WIDTH,
-//         0.0, RK_SCREEN_SAVER_WINDOW_HEIGHT,
-//         -1.0, 1.0
-//     );
-//     synshape::Line line;
-//     RKGPoint first, second;
-//     first.x = RK_SCREEN_SAVER_WINDOW_WIDTH / 2;
-//     first.y = RK_SCREEN_SAVER_WINDOW_HEIGHT / 2;
-//     second.x = RK_SCREEN_SAVER_WINDOW_WIDTH / 2;
-//     second.y = RK_SCREEN_SAVER_WINDOW_HEIGHT / 2;
-//     RKGColor c1, c2;
-//     c1.r = 0;
-//     c1.g = 255;
-//     c1.b = 255;
-//     c1.a = 255;
-//     c2.r = 0;
-//     c2.g = 255;
-//     c2.b = 255;
-//     c2.a = 255;
-//     first.color = c1;
-//     second.color = c2;
-//     //-- create polygon object
-//     synshape::Polygon poly;
-//     //-- vector to store circle points
-//     std::deque<RKGPoint> points;
-//     points.resize(0);
-//     //-- define points amount
-//     int radius = 0;
-//     int amount = 4;
-//     double theta = 0;
-//     int theta_padd = 360 / amount;
-//     //-- calculate r related x and y and r
-//     int x_rel, y_rel;
-//     int c = 0;
-//     while (true) 
-//     {
-//         //-- Clear the Window
-//         window.clear(30, 30, 30, 255);
-//         second.x = window.mouse.x;
-//         second.y = RK_SCREEN_SAVER_WINDOW_HEIGHT - window.mouse.y;
-//         line.drawLine(
-//             first,
-//             second
-//         );
-//         //-- calculate polygon points
-//         for (int i = 0; i < amount; i++) {
-//             //-- calculate x and y
-//             x_rel = second.x - first.x;
-//             y_rel = first.y - second.y;
-//             //-- calaculate r
-//             radius = sqrt(pow(x_rel, 2) + pow(y_rel, 2));
-//             //-- point
-//             RKGPoint tmp;
-//             tmp.x = first.x + radius * cos(theta * M_PI / 180);
-//             tmp.y = first.y + radius * sin(theta * M_PI / 180);
-//             RKGColor tmpc;
-//             tmpc.a = 255;
-//             tmpc.r = 0;
-//             tmpc.g = 255;
-//             tmpc.b = 255;
-//             tmp.color = tmpc;
-//             points.push_back(tmp);
-//             theta = theta_padd * (i + 1);
-//         }
-//         //-- Increase Amount
-//         c++;
-//         if (amount < 40) {
-//             if (c % 2 == 0) {
-//                 amount++;
-//                 theta_padd = 360 / amount;
-//             }
-//         }
-//         //-- add to queue
-//         for (int i = 0; i < amount; i++) {
-//             line.drawLine(
-//                 points[i],
-//                 points[(i + 1) % amount]
-//             );
-//         }
-//         for (const auto& point : points) {
-//             // poly.drawPolygon(points, true);
-//         }
-//         //-- sleep
-//         points.clear();
-//         //-- update window
-//         window.update();
-//         std::this_thread::sleep_for(std::chrono::milliseconds(20));
-//     }
-// }
+int main2(int argc, char **argv) {
+    synwin::SynWindow window(
+        "Synestia Graphics",
+        RK_SCREEN_SAVER_WINDOW_HEIGHT,
+        RK_SCREEN_SAVER_WINDOW_WIDTH
+    );
+    glutInit(&argc, argv);
+    glFrustum(-10.0, 10.0, -10.0, 10.0, 1.5, 20.0);
+    while (true) {
+        //-- Clear the Window
+        window.clear(30, 30, 30, 255);
+        glColor3f(0.0, 1.0, 1.0);
+        glutWireSphere(2, 16, 70);
+        window.update();
+        std::this_thread::sleep_for(std::chrono::milliseconds(20));
+    }
+}
 
 //-- Main Method
 int main(int argc, char** argv) {
@@ -300,8 +223,33 @@ int main(int argc, char** argv) {
             logger(TAB YELLOW_GRAY "0." RESET " Test");
             logger(TAB YELLOW_GRAY "1." RESET " Analog Clock");
             logger(TAB YELLOW_GRAY "2." RESET " Digital Clock");
-            logger(TAB YELLOW_GRAY "3." RESET " Analog and Digital Clock");
+            logger(TAB YELLOW_GRAY "3." RESET " Modern Clock");
             logger(TAB YELLOW_GRAY "4." RESET " Exit (Not Yet Implemented)");
+            //-- Get User Choice
+            std::cout << TAB "Enter Your Choice : " YELLOW; std::cin >> choice; std::cout << RESET;
+            //-- Handle Switch
+            switch (choice) {
+                //-- Test Clock
+                case RK_CLOCK_TEST: {
+                    RKClock clock(RK_CLOCK_TEST);
+                    break;
+                }
+                //-- Analog Clock
+                case RK_CLOCK_ANALOG: {
+                    RKClock clock(RK_CLOCK_ANALOG);
+                    break;
+                }
+                //-- Digital Clock
+                case RK_CLOCK_DIGITAL: {
+                    RKClock clock(RK_CLOCK_DIGITAL);
+                    break;
+                }
+                //-- Modern Clock
+                case RK_CLOCK_MODERN: {
+                    RKClock clock(RK_CLOCK_MODERN);
+                    break;
+                }
+            }
             break;
         }
         //-- Mouse Functions
