@@ -261,28 +261,15 @@ int main(int argc, char** argv) {
             logRKGraphicsLogo();
             //-- Log Screen Saver Choices
             logger(YELLOW "Choose a Mouse Function :");
-            logger(TAB YELLOW_GRAY "0." RESET " Test");
-            logger(TAB YELLOW_GRAY "1." RESET " Mouse Change Circle Radius");
-            logger(TAB YELLOW_GRAY "2." RESET " Mouse Change Line Thickness");
-            logger(TAB YELLOW_GRAY "3." RESET " Mouse Change Rectangle Thickness");
-            logger(TAB YELLOW_GRAY "4." RESET " Exit (Not Yet Implemented)");
+            logger(TAB YELLOW_GRAY "1." RESET " Test Mouse Functions");
+            logger(TAB YELLOW_GRAY "2." RESET " Exit (Not Yet Implemented)");
             //-- Get User Choice
             std::cout << TAB "Enter Your Choice : " YELLOW; std::cin >> choice; std::cout << RESET;
             //-- Handle Switch
             switch (choice) {
-                //-- Test Mouse Function
-                case RK_MOUSE_FUNCTION_CIRCLE_RADIUS: {
-                    RKMouseFunctions mouse_functions(RK_MOUSE_FUNCTION_CIRCLE_RADIUS);
-                    break;
-                }
-                //-- Mouse Change Line Thickness
-                case RK_MOUSE_FUNCTION_LINE_THICKNESS: {
-                    RKMouseFunctions mouse_functions(RK_MOUSE_FUNCTION_LINE_THICKNESS);
-                    break;
-                }
-                //-- Mouse Change Rectangle Thickness
-                case RK_MOUSE_FUNCTION_RECTANGLE_THICKNESS: {
-                    RKMouseFunctions mouse_functions(RK_MOUSE_FUNCTION_RECTANGLE_THICKNESS);
+                //-- Create Mouse Functions Object
+                case 1: {
+                    RKMouseFunctions mouse_functions;
                     break;
                 }
             }
