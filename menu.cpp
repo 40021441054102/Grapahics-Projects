@@ -8,7 +8,7 @@
 # endif // RK_GRAPHICS_PROJECT_2
 //-- Include Project 3
 # ifndef RK_GRAPHICS_PROJECT_3
-    // # include "BouncingBall.hpp"
+    # include "BouncingBall.hpp"
 # endif // RK_GRAPHICS_PROJECT_3
 //-- Include Project 4
 # ifndef RK_GRAPHICS_PROJECT_4
