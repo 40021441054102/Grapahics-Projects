@@ -8,7 +8,7 @@
 # endif // RK_GRAPHICS_PROJECT_2
 //-- Include Project 3
 # ifndef RK_GRAPHICS_PROJECT_3
-    # include "BouncingBall.hpp"
+    // # include "BouncingBall.hpp"
 # endif // RK_GRAPHICS_PROJECT_3
 //-- Include Project 4
 # ifndef RK_GRAPHICS_PROJECT_4
@@ -192,26 +192,26 @@ int main(int argc, char** argv) {
             std::cout << TAB "Enter Your Choice : " YELLOW; std::cin >> choice; std::cout << RESET;
             //-- Handle Switch
             switch (choice) {
-                //-- Test Bouncing Ball
-                case RK_BOUNCING_BALL_TEST: {
-                    RKBouncingBall bouncing_ball(RK_BOUNCING_BALL_TEST);
-                    break;
-                }
-                //-- Bouncing Ball with Gravity
-                case RK_BOUNCING_BALL_GRAVITY: {
-                    RKBouncingBall bouncing_ball(RK_BOUNCING_BALL_GRAVITY);
-                    break;
-                }
-                //-- Bouncing Ball with Impact
-                case RK_BOUNCING_BALL_IMPACT: {
-                    RKBouncingBall bouncing_ball(RK_BOUNCING_BALL_IMPACT);
-                    break;
-                }
-                //-- Faster Smaller Impact
-                case RK_BOUNCING_BALL_FASTER_SMALLER_IMPACT: {
-                    RKBouncingBall bouncing_ball(RK_BOUNCING_BALL_FASTER_SMALLER_IMPACT);
-                    break;
-                }
+                // //-- Test Bouncing Ball
+                // case RK_BOUNCING_BALL_TEST: {
+                //     RKBouncingBall bouncing_ball(RK_BOUNCING_BALL_TEST);
+                //     break;
+                // }
+                // //-- Bouncing Ball with Gravity
+                // case RK_BOUNCING_BALL_GRAVITY: {
+                //     RKBouncingBall bouncing_ball(RK_BOUNCING_BALL_GRAVITY);
+                //     break;
+                // }
+                // //-- Bouncing Ball with Impact
+                // case RK_BOUNCING_BALL_IMPACT: {
+                //     RKBouncingBall bouncing_ball(RK_BOUNCING_BALL_IMPACT);
+                //     break;
+                // }
+                // //-- Faster Smaller Impact
+                // case RK_BOUNCING_BALL_FASTER_SMALLER_IMPACT: {
+                //     RKBouncingBall bouncing_ball(RK_BOUNCING_BALL_FASTER_SMALLER_IMPACT);
+                //     break;
+                // }
             }
             break;
         }
